@@ -2,7 +2,7 @@
 
 use SilverStripe\CMS\Model\SiteTree;
 
-class Page extends SiteTree
+class RolePage extends SiteTree
 {
     private static $db = [];
 

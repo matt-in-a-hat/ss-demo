@@ -1,5 +1,15 @@
 ---
-Name: myproject
+Name: msbot
 ---
 SilverStripe\Core\Manifest\ModuleManifest:
   project: mysite
+
+SilverStripe\Core\Injector\Injector:
+  Psr\Log\LoggerInterface:
+    calls:
+      StreamHandler: [ pushHandler, [ %$StreamHandler ] ]
+  StreamHandler:
+    class: Monolog\Handler\StreamHandler
+    constructor:
+      - "php://stdout"
+      - "info"
