@@ -1,16 +1,11 @@
 <?php
 
-use SilverStripe\CMS\Model\SiteTree;
+use CWP\CWP\PageTypes\BasePage;
 use SilverStripe\SiteConfig\SiteConfig;
 
-class Page extends SiteTree
+class Page extends BasePage
 {
     private static $db = [];
 
     private static $has_one = [];
-
-    public function IsSiteUnderMaintenance() {
-        $config = SiteConfig::current_site_config();
-        return $config->ShowDownForMaintenanceMessage;
-    }
 }

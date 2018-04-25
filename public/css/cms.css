@@ -1,0 +1,21 @@
+#floating-info-window {
+  border: 5px solid lightgrey;
+  padding: 5px;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+  max-width: 60%;
+  max-height: 40%;
+  position: absolute;
+  top: 60%;
+  left: 20%;
+  z-index: 9999;
+  background-color: rgba(209, 225, 245, 0.7);
+  cursor: move;
+  overflow-y: auto;
+}
+#floating-info-window:hover {
+  background-color: rgba(209, 225, 245, 1);
+}
+#floating-info-window>* {
+  cursor: auto;
+}

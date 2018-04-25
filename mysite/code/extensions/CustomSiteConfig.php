@@ -11,7 +11,7 @@ class CustomSiteConfig extends DataExtension {
 
     public function updateCMSFields(FieldList $fields) {
         $fields->addFieldsToTab('Root.Main', [
-            CheckboxField::create('ShowDownForMaintenanceMessage'),
+            CheckboxField::create('ShowDownForMaintenanceMessage', 'Show site under maintenance message'),
         ]);
     }
 }

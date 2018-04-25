@@ -11,6 +11,8 @@ class DesignerPage extends RolePage
         'DesignFragments' => Image::class,
     ];
 
+    private static $icon = 'images/photoshop.png';
+
     public function getCMSFields() {
         $fields = parent::getCMSFields();
         $fields->addFieldToTab('Root.Main', UploadField::create('DesignFragments'), 'Content');

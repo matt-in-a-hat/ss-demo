@@ -10,6 +10,8 @@ class DeveloperPage extends RolePage
         'LanguageProficiencies' => 'Text',
     ];
 
+    private static $icon = 'images/code.png';
+
     public function getCMSFields() {
         $fields = parent::getCMSFields();
         $fields->addFieldsToTab('Root.Main', array(

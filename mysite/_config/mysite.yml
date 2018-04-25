@@ -13,3 +13,11 @@ SilverStripe\Core\Injector\Injector:
     constructor:
       - "php://stdout"
       - "info"
+Silverstripe\SiteConfig\SiteConfig:
+  extensions:
+    - CustomSiteConfig
+SilverStripe\Admin\LeftAndMain:
+  extra_requirements_css:
+    - css/cms.css
+  extra_requirements_javascript:
+    - javascript/cms.js
