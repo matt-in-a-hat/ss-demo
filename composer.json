@@ -7,7 +7,8 @@
         "silverstripe/recipe-plugin": "^1",
         "silverstripe/recipe-cms": "1.1.0@stable",
         "silverstripe-themes/simple": "~3.2.0",
-        "cwp/cwp": "2.0.0-rc3"
+        "cwp/cwp": "2.0.0-rc3",
+        "silverstripe/queuedjobs": "^4.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7"

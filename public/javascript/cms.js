@@ -10,14 +10,30 @@ jQuery(function ($) {
   infoWindow.html(`
     <p>(This box is not part of SilverStripe)</p>
     <p>Typical sidebar with sections</p>
-    <p>Page hierarchy determines URLs. Typical create & move pages.</p>
-    <p>Each page has a "page type" (i.e. php Class) which allows us to have some with extra functionality.</p>
+    <p>Page hierarchy determines <strong>URLs</strong>. Typical create & move pages.</p>
+    <p>Each page has a "<strong>page type</strong>" (i.e. php Class) which allows us to have some with extra functionality.</p>
     <p>The base installation doesn't have many base types built in, but we usually use a CWP module that includes a "News page" among others.</p>
-    <p>All pages have some base content, but can be extended to add whatever fields or components are needed.</p>
-    <p>It's possible to force some structure by making some pages only allowed under a certain "holder" page (e.g. News).
+    <p>All pages have some base content, but can be extended to <strong>add fields</strong> or components as needed.</p>
+    <p>It's possible to <strong>force some structure</strong> by making some pages only allowed under a certain "holder" page (e.g. News).</p>
+    <p>All pages are <strong>Versioned</strong>, meaning you can look back on all previous changes, and pages are never deleted.</p>
+    <h3>Bots (page types)</h3>
+    <p>There's kind of 2 concepts, the <strong>CMS interface</strong> and the <strong>public interface</strong>. CMS features are defined in code, such as the fields a class has. Front-end is mostly done using templates.</p>
+    <p><strong>Image handling</strong> is built into SS (see Designer page).</p>
     <br>
-<br>- CMS (front end/back end), pages & types & templates (draft, history, extending), built in types? (restrictions e.g. holders), files & images & resampling
-<br>- Users & roles, site config, QueuedJobs (e.g. importers)
+    <p><strong>Users</strong>, pretty standard. Usually set up and send reset link.</p>
+    <p>Has pretty good permission groups/roles facility.</p>
+    <p><strong>Site config</strong> allows easily adding site-wide settings.</p>
+    <p><strong>QueuedJobs</strongs> we use for periodical tasks like importing data. I haven't added any here but <a target="_blank" href="http://journeys.nzta.govt.nz/admin/queuedjobs">Journeys has more than enough</a>.</p>
+    <br>
+    <h3>DataObjects</h3>
+    <p>Base class for items saved in database (Pages are DataObjects with extra fields, Versioning, and a rich CMS section).</p>
+    <p>Good for data that's transient or volumous.</p>
+    <p><strong>ModelAdmin</strong> is a built in CMS view for any type of DataObject e.g. teams.</p>
+    <p>Usual model <strong>relations</srtong> are supported, and provides some nice components such as the GridField relation editor (e.g. for many to many).</p>
+    <br>
+    <p><a href="/other-notes/" target="_blank">Remaining remarks</a></p>
+    <br>
+    <br>
   `)
 
   $('body').append(infoWindow)
@@ -42,15 +58,17 @@ jQuery(function ($) {
   }
 
   infoWindow.on('click', function (e) {
-    e.preventDefault()
-    if (trackingOffset) {
-      stopMoveListener()
-    } else {
-      trackingOffset = { x: e.offsetX + infoWindow.border().left, y: e.offsetY + infoWindow.border().top }
-      $('body').on('mousemove', moveWindowToMouse)
-      $('body').on('click', stopMoveListener)
+    if (e.target.tagName !== 'A') {
+      e.preventDefault()
+      if (trackingOffset) {
+        stopMoveListener()
+      } else {
+        trackingOffset = { x: e.pageX - infoWindow.offset().left, y: e.pageY - infoWindow.offset().top }
+        $('body').on('mousemove', moveWindowToMouse)
+        $('body').on('click', stopMoveListener)
+      }
+      return false
     }
-    return false
   })
 
   if (window.localStorage.getItem('infoWindowScrollPos')) {
